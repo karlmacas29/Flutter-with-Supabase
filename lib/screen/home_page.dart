@@ -9,6 +9,8 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
+  final TextEditingController _textCtrl = TextEditingController();
+  TextEditingController _textUpdateCtrl = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -156,25 +158,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         ),
                         trailing: IconButton(
                             onPressed: () {
+                              _textUpdateCtrl.text = note['note_body'];
                               showDialog(
                                   context: context,
                                   builder: (context) {
                                     return SimpleDialog(
-                                      title: const Text('Add a Note'),
+                                      title: const Text('Update Note'),
                                       children: [
                                         Container(
                                           margin: const EdgeInsets.all(10),
                                           child: TextFormField(
-                                            initialValue: note['note_body'],
-                                            onFieldSubmitted: (value) async {
-                                              await _updateNote(value, noteId);
-                                              if (mounted)
-                                                Navigator.pop(context);
-                                            },
+                                            controller: _textUpdateCtrl,
                                             decoration: const InputDecoration(
                                               border: OutlineInputBorder(),
                                               hintText: 'Type Something...',
                                             ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 30,
+                                            vertical: 10,
+                                          ),
+                                          child: ElevatedButton(
+                                            onPressed: () async {
+                                              await _updateNote(
+                                                  _textUpdateCtrl.text, noteId);
+                                              if (mounted) {
+                                                Navigator.pop(context);
+                                              }
+                                            },
+                                            child: const Text('Update'),
                                           ),
                                         )
                                       ],
@@ -198,16 +212,26 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     Container(
                       margin: const EdgeInsets.all(10),
                       child: TextFormField(
-                        onFieldSubmitted: (value) {
-                          _createNote(value);
-                          if (mounted) Navigator.pop(context);
-                        },
+                        controller: _textCtrl,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Type Something...',
                         ),
                       ),
-                    )
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 10,
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _createNote(_textCtrl.text);
+                          if (mounted) Navigator.pop(context);
+                        },
+                        child: const Text('Add'),
+                      ),
+                    ),
                   ],
                 );
               });
