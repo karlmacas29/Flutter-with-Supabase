@@ -5,5 +5,6 @@
 
 # Supabase
 <a href='https://supabase.com'>Supabase</a>
+<br>
 <img src='https://github.com/user-attachments/assets/6fb50a92-3096-432b-bed7-7716864ab60f' width='600' heigth ='300'>
 
