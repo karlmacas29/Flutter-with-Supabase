@@ -19,4 +19,9 @@
 <img src='https://github.com/user-attachments/assets/25552481-cd13-412f-ab19-7c74dfcaba67' width='600' heigth ='300'>
 <br>
 <img src='https://github.com/user-attachments/assets/49b7a7a4-6cca-4cde-a1b4-96755a5b400d' width='600' heigth ='300'>
+<br>
+- Screenshot of Data tables
+<br>
+<img src='https://github.com/user-attachments/assets/12717be3-69cb-4d64-90e9-8cc6927da4c5' width='600' heigth ='300'>
+
 
